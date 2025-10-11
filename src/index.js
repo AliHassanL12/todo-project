@@ -1,6 +1,7 @@
 import { createTodo } from "./todo";
 import { createProject } from "./project";
 import { controller } from './controller.js';
+import { domDisplay } from "./domListDisplayer.js";
 import './css/style.css';
 
 
@@ -11,3 +12,4 @@ controller.addTodo(defaultProject, workingOut);
 
 console.log(defaultProject.getList());
 
+domDisplay.displayList( [ workingOut ]);
