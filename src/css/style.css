@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: 1.5;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+
+.sidebar {
+    padding-left: 30px;
+    padding-right: 10px;
+    grid-row: 1 / 3;
+    border: 1px solid black;
+}
+
+.main-content {
+    grid-row: 1 / 3;
+}
+
+ul {
+    position: relative;
+}
+
+ul::after {
+    position: absolute;
+    top: -7px;
+    right: 0;
+    content: '+';
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+ul > li {
+    list-style: none;
+    margin-left: 10px;
+}
