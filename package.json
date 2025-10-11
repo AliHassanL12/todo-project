@@ -13,7 +13,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/AliHassanL12/template-configuration/issues"
   },
@@ -21,6 +20,7 @@
   "description": "",
   "devDependencies": {
     "css-loader": "^7.1.2",
+    "date-fns": "^4.1.0",
     "html-webpack-plugin": "^5.6.4",
     "style-loader": "^4.0.0",
     "webpack": "^5.102.1",
