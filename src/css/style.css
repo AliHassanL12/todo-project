@@ -21,6 +21,7 @@ body {
 
 .main-content {
     grid-row: 1 / 3;
+    padding: 10px;
 }
 
 ul {
@@ -39,4 +40,17 @@ ul::after {
 ul > li {
     list-style: none;
     margin-left: 10px;
+}
+
+.todo-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: rgb(158, 248, 218);
+    border-radius: 5px;
+}
+
+.expand-button {
+    margin-left: 10px;
+    cursor: pointer;
 }
