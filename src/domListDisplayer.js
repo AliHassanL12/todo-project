@@ -13,6 +13,8 @@ const domDisplay = (function() {
             todoContainer.className = 'todo-container';
             rightContainer.className = 'right-sub-container';
 
+            todoContainer.dataset.project = controller.getTodoProject(todo);
+            todoContainer.dataset.id = controller.getTodoID(todo);
             todoContainer.style.borderLeft = '3px solid ' + controller.returnColor(todo.priority);
 
             title.textContent = todo.title;

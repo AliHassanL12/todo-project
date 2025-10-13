@@ -5,6 +5,7 @@ import { projectTracker } from "./projectTracker";
 
 const controller = (function () {
     function addTodo(project, todo) {
+        todo.assignToProject(project);
         project.addToList(todo);
     }
 
@@ -24,11 +25,21 @@ const controller = (function () {
         return colorPicker.returnColor(priority);
     }
 
+    function getTodoID(todo) {
+        return todo.getID();
+    }
+
+    function getTodoProject(todo) {
+        return todo.getAssignedProject();
+    }
+
     return {
         addTodo,
         displayList,
         returnColor,
-        createNewProject
+        createNewProject,
+        getTodoID,
+        getTodoProject
     }
 })();
 

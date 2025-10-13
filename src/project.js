@@ -10,9 +10,14 @@ function createProject(name) {
         return list;
     }
 
+    function getProjectName() {
+        return name;
+    }
+
     return {
         addToList,
-        getList
+        getList,
+        getProjectName
     }
 }
 
