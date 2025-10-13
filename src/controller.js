@@ -9,6 +9,7 @@ const controller = (function () {
     function displayList(project) {
         const list = project.getList();
         domDisplay.displayList(list);
+        domDisplay.attachListeners();
     }
 
     function returnColor(priority) {

@@ -26,8 +26,22 @@ const domDisplay = (function() {
             rightContainer.appendChild(expandButton);
         }
     }
+
+    function attachListeners() {
+        const expandButtons = document.querySelectorAll('.expand-button');
+        expandButtons.forEach((expandButton) => {
+            expandButton.addEventListener('click', displayDetails);
+        });
+    };
+
+    function displayDetails() {
+        const dialog = document.querySelector('.todo-details');
+        dialog.showModal();
+    }
+
     return {
-        displayList
+        displayList,
+        attachListeners
     }
 })();
 
