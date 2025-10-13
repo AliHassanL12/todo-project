@@ -36,7 +36,13 @@ const domDisplay = (function() {
         });
     };
 
-    function displayDetails() {
+    function displayDetails(event) {
+        const expandButton = event.target;
+        const todoContainer = expandButton.parentElement.parentElement;
+        const project = todoContainer.dataset.project;
+        const id = todoContainer.dataset.id;
+
+        const todo = controller.findTodo(project, id);
         const dialog = document.querySelector('.todo-details');
         const h2 = document.createElement('h2');
         dialog.showModal();

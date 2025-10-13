@@ -33,13 +33,22 @@ const controller = (function () {
         return todo.getAssignedProject();
     }
 
+    function findTodo(projectName, id) {
+        const projects = projectTracker.getProjects();
+        const project = projects.find((item) => item.getProjectName() === projectName);
+        const todoListArray = project.getList();
+        const requestedTodo = todoListArray.find((todo) => todo.getID() === id);
+        return requestedTodo;
+    }
+
     return {
         addTodo,
         displayList,
         returnColor,
         createNewProject,
         getTodoID,
-        getTodoProject
+        getTodoProject,
+        findTodo
     }
 })();
 
