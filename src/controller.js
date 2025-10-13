@@ -1,9 +1,17 @@
 import { colorPicker } from "./colorPicker";
 import { domDisplay } from "./domListDisplayer";
+import { createProject } from "./project";
+import { projectTracker } from "./projectTracker";
 
 const controller = (function () {
     function addTodo(project, todo) {
         project.addToList(todo);
+    }
+
+    function createNewProject(name) {
+        const project = createProject('default');
+        projectTracker.addProject(project);
+        return project; 
     }
 
     function displayList(project) {
@@ -19,7 +27,8 @@ const controller = (function () {
     return {
         addTodo,
         displayList,
-        returnColor
+        returnColor,
+        createNewProject
     }
 })();
 

@@ -36,6 +36,7 @@ const domDisplay = (function() {
 
     function displayDetails() {
         const dialog = document.querySelector('.todo-details');
+        const h2 = document.createElement('h2');
         dialog.showModal();
     }
 
