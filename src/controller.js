@@ -2,6 +2,7 @@ import { colorPicker } from "./colorPicker";
 import { domDisplay } from "./domListDisplayer";
 import { createProject } from "./project";
 import { projectTracker } from "./projectTracker";
+import { createTodo } from "./todo";
 
 const controller = (function () {
     let currentTodo = null;
@@ -58,6 +59,13 @@ const controller = (function () {
         domDisplay.clearMainContentDOM();
         displayList(currentProject);
     }
+
+    function addNewTodo(title, description, dueDate, priority, notes) {
+        const todo = createTodo(title, description, dueDate, priority, notes);
+        addTodo(currentProject, todo);
+        domDisplay.clearMainContentDOM();
+        displayList(currentProject);
+    }
     return {
         addTodo,
         displayList,
@@ -68,7 +76,8 @@ const controller = (function () {
         findTodo,
         setCurrentTodo,
         getCurrentTodo,
-        setTodoDetails
+        setTodoDetails,
+        addNewTodo
     }
 })();
 

@@ -34,6 +34,8 @@ const domDisplay = (function() {
     }
 
     function attachListeners() {
+        const addTodoButton = document.querySelector('.add-todo-button');
+        addTodoButton.addEventListener('click', addTodo);
         const expandButtons = document.querySelectorAll('.expand-button');
         expandButtons.forEach((expandButton) => {
             expandButton.addEventListener('click', displayDetails);
@@ -113,8 +115,14 @@ const domDisplay = (function() {
         const dueDateVal = document.querySelector('#due-date').value;
         const priorityVal = document.querySelector('#priority').value;
         const notesVal = document.querySelector('#notes').value;
-        controller.setTodoDetails(todo, titleVal, descriptionVal, dueDateVal, priorityVal, notesVal);
-        closeDialog(event);
+        controller.setCurrentTodo(null);
+        if (!todo) {
+            controller.addNewTodo(titleVal, descriptionVal, dueDateVal, priorityVal, notesVal);
+            closeDialog(event);
+        } else {
+            controller.setTodoDetails(todo, titleVal, descriptionVal, dueDateVal, priorityVal, notesVal);
+            closeDialog(event);
+        }
     }
 
     function closeDialog(event) {
@@ -128,6 +136,13 @@ const domDisplay = (function() {
         while (mainContent.firstChild) {
             mainContent.removeChild(mainContent.firstChild);
         }
+    }
+
+    function addTodo() {
+        const dialog = document.querySelector('.edit-details');
+        const form = document.querySelector('form');
+        form.reset();
+        dialog.showModal();
     }
 
     return {
