@@ -38,10 +38,8 @@ const controller = (function () {
         return todo.getAssignedProject();
     }
 
-    function findTodo(projectName, id) {
-        const projects = projectTracker.getProjects();
-        const project = projects.find((item) => item.getProjectName() === projectName);
-        const todoListArray = project.getList();
+    function findTodo(id) {
+        const todoListArray = currentProject.getList();
         const requestedTodo = todoListArray.find((todo) => todo.getID() === id);
         return requestedTodo;
     }

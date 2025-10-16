@@ -67,10 +67,9 @@ const domDisplay = (function() {
     };
 
     function displayDetails(event) {
-        const [project, id] = returnIDsFromEvent(event);
+        const id = returnIDsFromEvent(event);
 
-        console.log(project, id);
-        const todo = controller.findTodo(project, id);
+        const todo = controller.findTodo(id);
         const dialog = document.querySelector('.todo-details');
         const h2 = document.querySelector('.title')
         const description = document.querySelector('.description');
@@ -90,16 +89,15 @@ const domDisplay = (function() {
     function returnIDsFromEvent(event) {
         const expandButton = event.target;
         const todoContainer = expandButton.closest('.todo-container');
-        const project = todoContainer.dataset.project;
         const id = todoContainer.dataset.id;
-        return [project, id];
+        return id;
     }
 
     function editDetails(event) {
         const dialog = document.querySelector('.edit-details')
-        const [project, id] = returnIDsFromEvent(event);
+        const id = returnIDsFromEvent(event);
 
-        const todo = controller.findTodo(project, id);
+        const todo = controller.findTodo(id);
         controller.setCurrentTodo(todo);
         const title = document.querySelector('#title');
         const description = document.querySelector('#description');
