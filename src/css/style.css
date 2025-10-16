@@ -48,9 +48,11 @@ ul > li {
     padding: 15px;
     background-color: rgb(158, 248, 218);
     border-radius: 5px;
+    margin-bottom: 10px;
 }
 
-.expand-button {
+.expand-button,
+.edit-button {
     margin-left: 10px;
     cursor: pointer;
 }
@@ -62,4 +64,24 @@ ul > li {
 .bold {
     font-size: 1.1rem;
     font-weight: bold;
+}
+
+dialog {
+    padding: 20px;
+    border: none;
+    border-radius: 20px;
+    position: fixed;
+    /* Move it 50% relative to container */
+    top: 50%;
+    left: 50%;
+    /* Move it back 50% relative to self */
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.bold > span {
+    font-weight: 100;
+    font-size: 1rem;
 }

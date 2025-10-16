@@ -8,7 +8,9 @@ const domDisplay = (function() {
             const title = document.createElement('span');
             const dueDate = document.createElement('span');
             const expandButton = document.createElement('button');
+            const editDetailsButton = document.createElement('button');
 
+            editDetailsButton.className = 'edit-button';
             expandButton.className = 'expand-button';
             todoContainer.className = 'todo-container';
             rightContainer.className = 'right-sub-container';
@@ -20,11 +22,13 @@ const domDisplay = (function() {
             title.textContent = todo.title;
             dueDate.textContent = todo.dueDate;
             expandButton.textContent = 'View Details';
+            editDetailsButton.textContent = 'Edit Details';
 
             mainContent.appendChild(todoContainer);
             todoContainer.appendChild(title);
             todoContainer.appendChild(rightContainer);
             rightContainer.appendChild(dueDate);
+            rightContainer.appendChild(editDetailsButton);
             rightContainer.appendChild(expandButton);
         }
     }
@@ -37,17 +41,13 @@ const domDisplay = (function() {
 
         const closeButton = document.querySelector('.close');
         closeButton.addEventListener('click', closeDialog);
-        // const closeButtons = document.querySelectorAll('.close');
-        // closeButtons.forEach((closeButton) => {
-        //     closeButton.addEventListener('click', closeModal());
-        // })
+
+        const editButton = document.querySelector('edit-button');
+        editButton.addEventListener('click', editDetails);
     };
 
     function displayDetails(event) {
-        const expandButton = event.target;
-        const todoContainer = expandButton.parentElement.parentElement;
-        const project = todoContainer.dataset.project;
-        const id = todoContainer.dataset.id;
+        const [project, id] = returnIDsFromEvent(event);
 
         const todo = controller.findTodo(project, id);
         const dialog = document.querySelector('.todo-details');
@@ -64,6 +64,18 @@ const domDisplay = (function() {
         notes.textContent = todo.notes;
 
         dialog.showModal();
+    }
+
+    function returnIDsFromEvent(event) {
+        const expandButton = event.target;
+        const todoContainer = expandButton.parentElement.parentElement;
+        const project = todoContainer.dataset.project;
+        const id = todoContainer.dataset.id;
+        return [project, id];
+    }
+
+    function editDetails(event) {
+
     }
 
     function closeDialog() {
