@@ -39,11 +39,15 @@ const domDisplay = (function() {
             expandButton.addEventListener('click', displayDetails);
         });
 
-        const closeButton = document.querySelector('.close');
-        closeButton.addEventListener('click', closeDialog);
+        const closeButtons = document.querySelectorAll('.close');
+        closeButtons.forEach((closeButton) => {
+            closeButton.addEventListener('click', closeDialog);
+        })
 
-        const editButton = document.querySelector('edit-button');
-        editButton.addEventListener('click', editDetails);
+        const editButtons = document.querySelectorAll('.edit-button');
+        editButtons.forEach((editButton) => {
+            editButton.addEventListener('click', editDetails);
+        })
     };
 
     function displayDetails(event) {
@@ -75,11 +79,15 @@ const domDisplay = (function() {
     }
 
     function editDetails(event) {
+        const dialog = document.querySelector('.edit-details')
+        const [project, id] = returnIDsFromEvent(event);
 
+        dialog.showModal();
     }
 
-    function closeDialog() {
-        const dialog = document.querySelector('.todo-details');
+    function closeDialog(event) {
+        event.preventDefault();
+        const dialog = event.target.closest('dialog');
         dialog.close();
     }
 
