@@ -54,3 +54,12 @@ ul > li {
     margin-left: 10px;
     cursor: pointer;
 }
+
+.todo-details > * {
+    display: block;
+}
+
+.bold {
+    font-size: 1.1rem;
+    font-weight: bold;
+}

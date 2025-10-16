@@ -34,6 +34,13 @@ const domDisplay = (function() {
         expandButtons.forEach((expandButton) => {
             expandButton.addEventListener('click', displayDetails);
         });
+
+        const closeButton = document.querySelector('.close');
+        closeButton.addEventListener('click', closeDialog);
+        // const closeButtons = document.querySelectorAll('.close');
+        // closeButtons.forEach((closeButton) => {
+        //     closeButton.addEventListener('click', closeModal());
+        // })
     };
 
     function displayDetails(event) {
@@ -44,8 +51,24 @@ const domDisplay = (function() {
 
         const todo = controller.findTodo(project, id);
         const dialog = document.querySelector('.todo-details');
-        const h2 = document.createElement('h2');
+        const h2 = document.querySelector('.title')
+        const description = document.querySelector('.description');
+        const dueDate = document.querySelector('.due-date');
+        const priority = document.querySelector('.priority');
+        const notes = document.querySelector('.notes');
+
+        h2.textContent = todo.title;
+        description.textContent = todo.description;
+        dueDate.textContent = todo.dueDate;
+        priority.textContent = todo.priority;
+        notes.textContent = todo.notes;
+
         dialog.showModal();
+    }
+
+    function closeDialog() {
+        const dialog = document.querySelector('.todo-details');
+        dialog.close();
     }
 
     return {
