@@ -15,6 +15,7 @@ function createTodo(title, description, dueDate, priority, notes) {
         return todoID;
     }
 
+
     return {
         title,
         description,
@@ -23,7 +24,7 @@ function createTodo(title, description, dueDate, priority, notes) {
         notes,
         assignToProject,
         getAssignedProject, 
-        getID
+        getID,
     }
 }
 

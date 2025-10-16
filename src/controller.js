@@ -41,6 +41,10 @@ const controller = (function () {
         return requestedTodo;
     }
 
+    function setDetails(titleValue, descriptionValue, dueDateValue, priorityValue, notesValue) {
+        todo.setNewDetails(titleValue, descriptionValue, dueDateValue, priorityValue, notesValue);
+        todo.returnDetails();
+    }
     return {
         addTodo,
         displayList,
@@ -48,7 +52,8 @@ const controller = (function () {
         createNewProject,
         getTodoID,
         getTodoProject,
-        findTodo
+        findTodo,
+        setDetails
     }
 })();
 

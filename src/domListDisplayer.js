@@ -42,6 +42,11 @@ const domDisplay = (function() {
         const closeButtons = document.querySelectorAll('.close');
         closeButtons.forEach((closeButton) => {
             closeButton.addEventListener('click', closeDialog);
+        });
+
+        const submitDetailsButtons = document.querySelectorAll('.submit-button');
+        submitDetailsButtons.forEach((submitDetailsButton) => {
+            submitDetailsButton.addEventListener('click', submitDetails);
         })
 
         const editButtons = document.querySelectorAll('.edit-button');
@@ -72,7 +77,7 @@ const domDisplay = (function() {
 
     function returnIDsFromEvent(event) {
         const expandButton = event.target;
-        const todoContainer = expandButton.parentElement.parentElement;
+        const todoContainer = expandButton.closest('.todo-container');
         const project = todoContainer.dataset.project;
         const id = todoContainer.dataset.id;
         return [project, id];
@@ -89,7 +94,6 @@ const domDisplay = (function() {
         const priority = document.querySelector('#priority');
         const notes = document.querySelector('#notes');
 
-        console.log(todo, title)
         title.value = todo.title;
         description.value = todo.description;
         dueDate.value = todo.dueDate;
@@ -97,6 +101,10 @@ const domDisplay = (function() {
         notes.value = todo.notes;
 
         dialog.showModal();
+    }
+
+    function submitDetails(event) {
+        event.preventDefault();
     }
 
     function closeDialog(event) {
