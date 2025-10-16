@@ -14,6 +14,7 @@ const controller = (function () {
     }
 
     function createNewProject(name) {
+        domDisplay.addToDOMList(name);
         const project = createProject(name);
         projectTracker.addProject(project);
         return project; 
@@ -70,6 +71,14 @@ const controller = (function () {
         domDisplay.clearMainContentDOM();
         displayList(currentProject);
     }
+
+    function switchProjects(name) {
+        const list = projectTracker.getProjects();
+        const newCurrentProject = list.find((project) => project.getProjectName() === name);
+        domDisplay.clearMainContentDOM();
+        displayList(newCurrentProject);
+    }
+
     return {
         addTodo,
         displayList,
@@ -82,7 +91,8 @@ const controller = (function () {
         getCurrentTodo,
         setTodoDetails,
         addNewTodo,
-        removeTodo
+        removeTodo,
+        switchProjects
     }
 })();
 

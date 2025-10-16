@@ -64,6 +64,17 @@ const domDisplay = (function() {
         removeButtons.forEach((removeButton) => {
             removeButton.addEventListener('click', removeTodo);
         })
+
+        const addProjectButton = document.querySelector('.add-project');
+        addProjectButton.addEventListener('click', addProject);
+
+        const submitProjectButton = document.querySelector('.submit-project');
+        submitProjectButton.addEventListener('click', submitNewProject);
+
+        const projectListItems = document.querySelectorAll('.project-list-item');
+        projectListItems.forEach((projectListItem) => {
+            projectListItem.addEventListener('click', switchProjects);
+        })
     };
 
     function displayDetails(event) {
@@ -153,14 +164,41 @@ const domDisplay = (function() {
     }
 
     function removeTodo(event) {
-        const [, id] = returnIDsFromEvent(event)
+        const id = returnIDsFromEvent(event)
         controller.removeTodo(id);
     }
 
+    function addProject() {
+        const dialog = document.querySelector('.project');
+        dialog.showModal();
+    }
+
+    function submitNewProject(event) {
+        event.preventDefault();
+        const name = document.querySelector('#name').value;
+        controller.createNewProject(name);
+        closeDialog(event);
+    }
+
+    function addToDOMList(name) {
+        const ul = document.querySelector('.project-list');
+        const li = document.createElement('li');
+
+        li.textContent = name;
+        li.className = 'project-list-item';
+
+        ul.appendChild(li);
+    }
+
+    function switchProjects(event) {
+        const projectName = event.target.textContent;
+        controller.switchProjects(projectName);
+    }
     return {
         displayList,
         attachListeners,
-        clearMainContentDOM
+        clearMainContentDOM,
+        addToDOMList
     }
 })();
 

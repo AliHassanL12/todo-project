@@ -102,3 +102,7 @@ form > div > input {
     display: flex;
     gap: 20px;
 }
+
+.project-list > li {
+    cursor: pointer;
+}

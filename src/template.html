@@ -8,10 +8,8 @@
 <body>
     <div class="sidebar">
         <span>Home</span>
-        <ul>Projects
-            <li>Fitness</li>
-            <li>Groceries</li>
-            <li>Appointments</li>
+        <button class="add-project">Add Project</button>
+        <ul class="project-list">Projects
         </ul>
     </div>
     <div class="main-content">
@@ -49,6 +47,15 @@
                 </div>
                 <button class="close">Close</button>
                 <button class="submit-button">Submit Details</button>
+            </form>
+        </dialog>
+        <dialog class="project">
+            <form>
+                <div>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name">
+                </div>
+                <button class="submit-project">Submit</button>
             </form>
         </dialog>
     </div>
