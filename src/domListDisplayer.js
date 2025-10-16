@@ -2,7 +2,7 @@ import { controller } from "./controller";
 const domDisplay = (function() {
     function displayList(list) {
         for (const todo of list) {
-            const mainContent = document.querySelector('.main-content');
+            const mainContent = document.querySelector('.todo-main-content');
             const todoContainer = document.createElement('div');
             const rightContainer = document.createElement('div');
             const title = document.createElement('span');
@@ -17,10 +17,10 @@ const domDisplay = (function() {
 
             todoContainer.dataset.project = controller.getTodoProject(todo);
             todoContainer.dataset.id = controller.getTodoID(todo);
-            todoContainer.style.borderLeft = '3px solid ' + controller.returnColor(todo.priority);
+            todoContainer.style.borderLeft = '3px solid ' + controller.returnColor(todo.details.priority);
 
-            title.textContent = todo.title;
-            dueDate.textContent = todo.dueDate;
+            title.textContent = todo.details.title;
+            dueDate.textContent = todo.details.dueDate;
             expandButton.textContent = 'View Details';
             editDetailsButton.textContent = 'Edit Details';
 
@@ -58,6 +58,7 @@ const domDisplay = (function() {
     function displayDetails(event) {
         const [project, id] = returnIDsFromEvent(event);
 
+        console.log(project, id);
         const todo = controller.findTodo(project, id);
         const dialog = document.querySelector('.todo-details');
         const h2 = document.querySelector('.title')
@@ -66,11 +67,11 @@ const domDisplay = (function() {
         const priority = document.querySelector('.priority');
         const notes = document.querySelector('.notes');
 
-        h2.textContent = todo.title;
-        description.textContent = todo.description;
-        dueDate.textContent = todo.dueDate;
-        priority.textContent = todo.priority;
-        notes.textContent = todo.notes;
+        h2.textContent = todo.details.title;
+        description.textContent = todo.details.description;
+        dueDate.textContent = todo.details.dueDate;
+        priority.textContent = todo.details.priority;
+        notes.textContent = todo.details.notes;
 
         dialog.showModal();
     }
@@ -88,23 +89,32 @@ const domDisplay = (function() {
         const [project, id] = returnIDsFromEvent(event);
 
         const todo = controller.findTodo(project, id);
+        controller.setCurrentTodo(todo);
         const title = document.querySelector('#title');
         const description = document.querySelector('#description');
         const dueDate = document.querySelector('#due-date');
         const priority = document.querySelector('#priority');
         const notes = document.querySelector('#notes');
 
-        title.value = todo.title;
-        description.value = todo.description;
-        dueDate.value = todo.dueDate;
-        priority.value = todo.priority;
-        notes.value = todo.notes;
+        title.value = todo.details.title;
+        description.value = todo.details.description;
+        dueDate.value = todo.details.dueDate;
+        priority.value = todo.details.priority;
+        notes.value = todo.details.notes;
 
         dialog.showModal();
     }
 
     function submitDetails(event) {
         event.preventDefault();
+        const todo = controller.getCurrentTodo();
+        const titleVal = document.querySelector('#title').value;
+        const descriptionVal = document.querySelector('#description').value;
+        const dueDateVal = document.querySelector('#due-date').value;
+        const priorityVal = document.querySelector('#priority').value;
+        const notesVal = document.querySelector('#notes').value;
+        controller.setTodoDetails(todo, titleVal, descriptionVal, dueDateVal, priorityVal, notesVal);
+        closeDialog(event);
     }
 
     function closeDialog(event) {
@@ -113,9 +123,17 @@ const domDisplay = (function() {
         dialog.close();
     }
 
+    function clearMainContentDOM() {
+        const mainContent = document.querySelector('.todo-main-content');
+        while (mainContent.firstChild) {
+            mainContent.removeChild(mainContent.firstChild);
+        }
+    }
+
     return {
         displayList,
-        attachListeners
+        attachListeners,
+        clearMainContentDOM
     }
 })();
 

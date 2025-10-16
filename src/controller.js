@@ -4,6 +4,9 @@ import { createProject } from "./project";
 import { projectTracker } from "./projectTracker";
 
 const controller = (function () {
+    let currentTodo = null;
+    let currentProject = null;
+
     function addTodo(project, todo) {
         todo.assignToProject(project);
         project.addToList(todo);
@@ -16,6 +19,7 @@ const controller = (function () {
     }
 
     function displayList(project) {
+        currentProject = project;
         const list = project.getList();
         domDisplay.displayList(list);
         domDisplay.attachListeners();
@@ -41,9 +45,18 @@ const controller = (function () {
         return requestedTodo;
     }
 
-    function setDetails(titleValue, descriptionValue, dueDateValue, priorityValue, notesValue) {
-        todo.setNewDetails(titleValue, descriptionValue, dueDateValue, priorityValue, notesValue);
-        todo.returnDetails();
+    function setCurrentTodo(todo) {
+        currentTodo = todo;
+    }
+
+    function getCurrentTodo() {
+        return currentTodo;
+    }
+
+    function setTodoDetails(todo, title, description, dueDate, priority, notes) {
+        todo.setDetails(title, description, dueDate, priority, notes);
+        domDisplay.clearMainContentDOM();
+        displayList(currentProject);
     }
     return {
         addTodo,
@@ -53,7 +66,9 @@ const controller = (function () {
         getTodoID,
         getTodoProject,
         findTodo,
-        setDetails
+        setCurrentTodo,
+        getCurrentTodo,
+        setTodoDetails
     }
 })();
 
