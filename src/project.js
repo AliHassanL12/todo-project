@@ -14,10 +14,17 @@ function createProject(name) {
         return name;
     }
 
+    function removeTodo(id) {
+        const isTodoHere = (todo) => todo.getID() === id;
+        const index = list.findIndex(isTodoHere);
+        list.splice(index, 1);
+    }
+
     return {
         addToList,
         getList,
-        getProjectName
+        getProjectName,
+        removeTodo
     }
 }
 

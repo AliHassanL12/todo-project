@@ -52,8 +52,8 @@ ul > li {
 }
 
 .expand-button,
-.edit-button {
-    margin-left: 10px;
+.edit-button,
+.remove-button {
     cursor: pointer;
 }
 
@@ -96,4 +96,9 @@ form > div > input {
 
 .edit-details form {
     display: inline-block;
+}
+
+.right-sub-container {
+    display: flex;
+    gap: 20px;
 }

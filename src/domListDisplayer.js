@@ -9,9 +9,11 @@ const domDisplay = (function() {
             const dueDate = document.createElement('span');
             const expandButton = document.createElement('button');
             const editDetailsButton = document.createElement('button');
+            const removeButton = document.createElement('button');
 
             editDetailsButton.className = 'edit-button';
             expandButton.className = 'expand-button';
+            removeButton.className = 'remove-button';
             todoContainer.className = 'todo-container';
             rightContainer.className = 'right-sub-container';
 
@@ -23,6 +25,7 @@ const domDisplay = (function() {
             dueDate.textContent = todo.details.dueDate;
             expandButton.textContent = 'View Details';
             editDetailsButton.textContent = 'Edit Details';
+            removeButton.textContent = 'Delete';
 
             mainContent.appendChild(todoContainer);
             todoContainer.appendChild(title);
@@ -30,6 +33,7 @@ const domDisplay = (function() {
             rightContainer.appendChild(dueDate);
             rightContainer.appendChild(editDetailsButton);
             rightContainer.appendChild(expandButton);
+            rightContainer.appendChild(removeButton);
         }
     }
 
@@ -54,6 +58,11 @@ const domDisplay = (function() {
         const editButtons = document.querySelectorAll('.edit-button');
         editButtons.forEach((editButton) => {
             editButton.addEventListener('click', editDetails);
+        })
+
+        const removeButtons = document.querySelectorAll('.remove-button');
+        removeButtons.forEach((removeButton) => {
+            removeButton.addEventListener('click', removeTodo);
         })
     };
 
@@ -143,6 +152,11 @@ const domDisplay = (function() {
         const form = document.querySelector('form');
         form.reset();
         dialog.showModal();
+    }
+
+    function removeTodo(event) {
+        const [, id] = returnIDsFromEvent(event)
+        controller.removeTodo(id);
     }
 
     return {

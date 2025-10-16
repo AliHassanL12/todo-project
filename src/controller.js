@@ -66,6 +66,12 @@ const controller = (function () {
         domDisplay.clearMainContentDOM();
         displayList(currentProject);
     }
+
+    function removeTodo(id) {
+        currentProject.removeTodo(id);
+        domDisplay.clearMainContentDOM();
+        displayList(currentProject);
+    }
     return {
         addTodo,
         displayList,
@@ -77,7 +83,8 @@ const controller = (function () {
         setCurrentTodo,
         getCurrentTodo,
         setTodoDetails,
-        addNewTodo
+        addNewTodo,
+        removeTodo
     }
 })();
 
