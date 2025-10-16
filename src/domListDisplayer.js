@@ -82,6 +82,20 @@ const domDisplay = (function() {
         const dialog = document.querySelector('.edit-details')
         const [project, id] = returnIDsFromEvent(event);
 
+        const todo = controller.findTodo(project, id);
+        const title = document.querySelector('#title');
+        const description = document.querySelector('#description');
+        const dueDate = document.querySelector('#due-date');
+        const priority = document.querySelector('#priority');
+        const notes = document.querySelector('#notes');
+
+        console.log(todo, title)
+        title.value = todo.title;
+        description.value = todo.description;
+        dueDate.value = todo.dueDate;
+        priority.value = todo.priority;
+        notes.value = todo.notes;
+
         dialog.showModal();
     }
 

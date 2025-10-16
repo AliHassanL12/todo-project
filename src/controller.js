@@ -10,7 +10,7 @@ const controller = (function () {
     }
 
     function createNewProject(name) {
-        const project = createProject('default');
+        const project = createProject(name);
         projectTracker.addProject(project);
         return project; 
     }
