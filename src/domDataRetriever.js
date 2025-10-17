@@ -5,9 +5,9 @@ const domData = (function() {
         const id = todoContainer.dataset.id;
         return id;
     }
-
+    
     return {
-        getIDFromEvent
+        getIDFromEvent,
     }
 })();
 

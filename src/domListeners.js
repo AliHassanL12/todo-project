@@ -1,15 +1,16 @@
 import { domDisplay } from './domListDisplayer.js';
+import { domDialog } from './domDialog.js';
 
 const listener = (function() {
     function attachDynamicListeners() {
         const expandButtons = document.querySelectorAll('.expand-button');
         expandButtons.forEach((expandButton) => {
-            expandButton.addEventListener('click', domDisplay.expandTodo);
+            expandButton.addEventListener('click', domDialog.expandTodo);
         });
 
         const editButtons = document.querySelectorAll('.edit-button');
         editButtons.forEach((editButton) => {
-            editButton.addEventListener('click', domDisplay.editDetails);
+            editButton.addEventListener('click', domDialog.editDetails);
         })
 
         const removeButtons = document.querySelectorAll('.remove-button');
@@ -25,21 +26,21 @@ const listener = (function() {
 
     function attachFixedListeners() {
         const addTodoButton = document.querySelector('.add-todo-button');
-        addTodoButton.addEventListener('click', domDisplay.addTodo);
+        addTodoButton.addEventListener('click', domDialog.addTodo);
 
         const closeButtons = document.querySelectorAll('.close');
         closeButtons.forEach((closeButton) => {
-            closeButton.addEventListener('click', domDisplay.closeDialog);
+            closeButton.addEventListener('click', domDialog.closeDialog);
         });
 
         const submitDetailsButton = document.querySelector('.submit-button');
-        submitDetailsButton.addEventListener('click', domDisplay.submitDetails);
+        submitDetailsButton.addEventListener('click', domDialog.submitDetails);
 
         const addProjectButton = document.querySelector('.add-project');
-        addProjectButton.addEventListener('click', domDisplay.addProject);
+        addProjectButton.addEventListener('click', domDialog.addProject);
 
         const submitProjectButton = document.querySelector('.submit-project');
-        submitProjectButton.addEventListener('click', domDisplay.submitNewProject);
+        submitProjectButton.addEventListener('click', domDialog.submitNewProject);
     };
 
     return {
