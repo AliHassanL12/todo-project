@@ -8,16 +8,22 @@ import { listener } from "./domListeners";
 const controller = (function () {
     let currentTodo = null;
 
-    function addTodo(project, todo) {
-        todo.assignToProject(project);
-        project.addToList(todo);
+    function init() {
+        const defaultProject = createNewProject('default');
+        projectTracker.setCurrentProject(defaultProject);
+        displayList(projectTracker.getCurrentProject());
     }
 
     function createNewProject(name) {
         const project = createProject(name);
-        domDisplay.addToDOMList(name);
         projectTracker.addProject(project);
+        domDisplay.addToDOMList(name);
         return project; 
+    }
+
+    function addTodo(project, todo) {
+        todo.assignToProject(project);
+        project.addToList(todo);
     }
 
     function displayList(project) {
@@ -80,6 +86,7 @@ const controller = (function () {
     }
 
     return {
+        init,
         addTodo,
         displayList,
         returnColor,

@@ -64,6 +64,7 @@ const domDisplay = (function() {
         const projectName = event.target.textContent;
         controller.switchProjects(projectName);
     }
+    
     return {
         displayList,
         clearMainContentDOM,
