@@ -1,5 +1,6 @@
 import { domDisplay } from './domListDisplayer.js';
 import { domDialog } from './domDialog.js';
+import { controller } from './controller.js';
 
 const listener = (function() {
     function attachDynamicListeners() {
@@ -15,7 +16,7 @@ const listener = (function() {
 
         const removeButtons = document.querySelectorAll('.remove-button');
         removeButtons.forEach((removeButton) => {
-            removeButton.addEventListener('click', domDisplay.removeTodo);
+            removeButton.addEventListener('click', controller.removeTodo);
         })
 
         const projectListItems = document.querySelectorAll('.project-list-item');

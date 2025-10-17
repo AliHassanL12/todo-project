@@ -4,6 +4,7 @@ import { createProject } from "./project";
 import { projectTracker } from "./projectTracker";
 import { createTodo } from "./todo";
 import { listener } from "./domListeners";
+import { domData } from "./domDataRetriever";
 
 const controller = (function () {
     let currentTodo = null;
@@ -69,10 +70,11 @@ const controller = (function () {
         listener.attachDynamicListeners();
     }
 
-    function removeTodo(id) {
-        projectTracker.getCurrentProject().removeTodo(id);
-        domDisplay.clearMainContentDOM();
-        displayList(projectTracker.getCurrentProject());
+    function removeTodo(event) {
+        const id = domData.getIDFromEvent(event);
+        const currentProject = projectTracker.getCurrentProject();
+        currentProject.removeTodo(id);
+        domDisplay.removeTodoFromDom(id);
     }
 
     function switchProjects(name) {

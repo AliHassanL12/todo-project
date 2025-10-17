@@ -14,11 +14,6 @@ const domDisplay = (function() {
         }
     }
 
-    function removeTodo(event) {
-        const id = domData.getIDFromEvent(event);
-        controller.removeTodo(id);
-    }
-
     function addToDOMList(name) {
         const ul = document.querySelector('.project-list');
         const li = document.createElement('li');
@@ -69,13 +64,18 @@ const domDisplay = (function() {
         rightContainer.appendChild(removeButton);
     }
 
+    function removeTodoFromDom(id) {
+        const todo = document.querySelector(`[data-id="${id}"]`);
+        todo.remove();
+    }
+
     return {
         displayList,
         clearMainContentDOM,
         addToDOMList,
-        removeTodo, 
         switchProjects,
-        displayTodo
+        displayTodo,
+        removeTodoFromDom
     }
 })();
 
