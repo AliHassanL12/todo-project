@@ -35,7 +35,7 @@ const controller = (function () {
         return todo.getID();
     }
 
-    function getTodoProject(todo) {
+    function getProjectAssignedToTodo(todo) {
         return todo.getAssignedProject();
     }
 
@@ -85,7 +85,7 @@ const controller = (function () {
         returnColor,
         createNewProject,
         getTodoID,
-        getTodoProject,
+        getProjectAssignedToTodo,
         findTodo,
         setCurrentTodo,
         getCurrentTodo,

@@ -4,7 +4,7 @@ const listener = (function() {
     function attachDynamicListeners() {
         const expandButtons = document.querySelectorAll('.expand-button');
         expandButtons.forEach((expandButton) => {
-            expandButton.addEventListener('click', domDisplay.displayDetails);
+            expandButton.addEventListener('click', domDisplay.expandTodo);
         });
 
         const editButtons = document.querySelectorAll('.edit-button');

@@ -1,4 +1,5 @@
 import { controller } from "./controller";
+import { domData } from "./domDataRetriever";
 const domDisplay = (function() {
     function displayList(list) {
         for (const todo of list) {
@@ -17,7 +18,7 @@ const domDisplay = (function() {
             todoContainer.className = 'todo-container';
             rightContainer.className = 'right-sub-container';
 
-            todoContainer.dataset.project = controller.getTodoProject(todo);
+            todoContainer.dataset.project = controller.getProjectAssignedToTodo(todo);
             todoContainer.dataset.id = controller.getTodoID(todo);
             todoContainer.style.borderLeft = '3px solid ' + controller.returnColor(todo.details.priority);
 
@@ -37,8 +38,15 @@ const domDisplay = (function() {
         }
     }
 
-    function displayDetails(event) {
-        const id = returnIDsFromEvent(event);
+    function clearMainContentDOM() {
+        const mainContent = document.querySelector('.todo-main-content');
+        while (mainContent.firstChild) {
+            mainContent.removeChild(mainContent.firstChild);
+        }
+    }
+
+    function expandTodo(event) {
+        const id = domData.getIDFromEvent(event);
 
         const todo = controller.findTodo(id);
         const dialog = document.querySelector('.todo-details');
@@ -57,16 +65,10 @@ const domDisplay = (function() {
         dialog.showModal();
     }
 
-    function returnIDsFromEvent(event) {
-        const expandButton = event.target;
-        const todoContainer = expandButton.closest('.todo-container');
-        const id = todoContainer.dataset.id;
-        return id;
-    }
-
+  
     function editDetails(event) {
         const dialog = document.querySelector('.edit-details')
-        const id = returnIDsFromEvent(event);
+        const id = domData.getIDFromEvent(event);
 
         const todo = controller.findTodo(id);
         controller.setCurrentTodo(todo);
@@ -109,13 +111,6 @@ const domDisplay = (function() {
         dialog.close();
     }
 
-    function clearMainContentDOM() {
-        const mainContent = document.querySelector('.todo-main-content');
-        while (mainContent.firstChild) {
-            mainContent.removeChild(mainContent.firstChild);
-        }
-    }
-
     function addTodo() {
         const dialog = document.querySelector('.edit-details');
         const form = document.querySelector('form');
@@ -124,7 +119,7 @@ const domDisplay = (function() {
     }
 
     function removeTodo(event) {
-        const id = returnIDsFromEvent(event)
+        const id = domData.getIDFromEvent(event);
         controller.removeTodo(id);
     }
 
@@ -164,7 +159,7 @@ const domDisplay = (function() {
         displayList,
         clearMainContentDOM,
         addToDOMList,
-        displayDetails,
+        expandTodo,
         editDetails,
         removeTodo, 
         switchProjects,
