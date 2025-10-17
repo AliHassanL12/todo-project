@@ -6,7 +6,6 @@ import { createTodo } from "./todo";
 
 const controller = (function () {
     let currentTodo = null;
-    let currentProject = null;
 
     function addTodo(project, todo) {
         todo.assignToProject(project);
@@ -21,7 +20,7 @@ const controller = (function () {
     }
 
     function displayList(project) {
-        currentProject = project;
+        projectTracker.setCurrentProject(project);
         const list = project.getList();
         domDisplay.displayList(list);
         domDisplay.attachListeners();
@@ -40,7 +39,7 @@ const controller = (function () {
     }
 
     function findTodo(id) {
-        const todoListArray = currentProject.getList();
+        const todoListArray = projectTracker.getCurrentProject().getList();
         const requestedTodo = todoListArray.find((todo) => todo.getID() === id);
         return requestedTodo;
     }
@@ -56,20 +55,20 @@ const controller = (function () {
     function setTodoDetails(todo, title, description, dueDate, priority, notes) {
         todo.setDetails(title, description, dueDate, priority, notes);
         domDisplay.clearMainContentDOM();
-        displayList(currentProject);
+        displayList(projectTracker.getCurrentProject());
     }
 
     function addNewTodo(title, description, dueDate, priority, notes) {
         const todo = createTodo(title, description, dueDate, priority, notes);
-        addTodo(currentProject, todo);
+        addTodo(projectTracker.getCurrentProject(), todo);
         domDisplay.clearMainContentDOM();
-        displayList(currentProject);
+        displayList(projectTracker.getCurrentProject());
     }
 
     function removeTodo(id) {
-        currentProject.removeTodo(id);
+        projectTracker.getCurrentProject().removeTodo(id);
         domDisplay.clearMainContentDOM();
-        displayList(currentProject);
+        displayList(projectTracker.getCurrentProject());
     }
 
     function switchProjects(name) {

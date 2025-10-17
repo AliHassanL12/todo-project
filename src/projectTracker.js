@@ -1,4 +1,5 @@
 const projectTracker = (function() {
+    let currentProject = null;
     let projects = [];
 
     function addProject(project) {
@@ -9,9 +10,19 @@ const projectTracker = (function() {
         return projects;
     }
 
+    function setCurrentProject(project) {
+        currentProject = project;
+    }
+
+    function getCurrentProject() {
+        return currentProject
+    }
+
     return {
         addProject,
-        getProjects
+        getProjects,
+        setCurrentProject,
+        getCurrentProject
     }
 })();
 
