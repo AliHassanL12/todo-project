@@ -1,7 +1,9 @@
 import { createTodo } from "./todo";
 import { controller } from './controller.js';
+import { listener } from "./domListeners";
 import './css/style.css';
 
+listener.attachFixedListeners();
 
 const defaultProject = controller.createNewProject('default');
 

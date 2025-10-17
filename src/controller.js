@@ -3,6 +3,7 @@ import { domDisplay } from "./domListDisplayer";
 import { createProject } from "./project";
 import { projectTracker } from "./projectTracker";
 import { createTodo } from "./todo";
+import { listener } from "./domListeners";
 
 const controller = (function () {
     let currentTodo = null;
@@ -23,7 +24,7 @@ const controller = (function () {
         projectTracker.setCurrentProject(project);
         const list = project.getList();
         domDisplay.displayList(list);
-        domDisplay.attachListeners();
+        listener.attachDynamicListeners();
     }
 
     function returnColor(priority) {

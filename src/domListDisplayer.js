@@ -37,46 +37,6 @@ const domDisplay = (function() {
         }
     }
 
-    function attachListeners() {
-        const addTodoButton = document.querySelector('.add-todo-button');
-        addTodoButton.addEventListener('click', addTodo);
-        const expandButtons = document.querySelectorAll('.expand-button');
-        expandButtons.forEach((expandButton) => {
-            expandButton.addEventListener('click', displayDetails);
-        });
-
-        const closeButtons = document.querySelectorAll('.close');
-        closeButtons.forEach((closeButton) => {
-            closeButton.addEventListener('click', closeDialog);
-        });
-
-        const submitDetailsButtons = document.querySelectorAll('.submit-button');
-        submitDetailsButtons.forEach((submitDetailsButton) => {
-            submitDetailsButton.addEventListener('click', submitDetails);
-        })
-
-        const editButtons = document.querySelectorAll('.edit-button');
-        editButtons.forEach((editButton) => {
-            editButton.addEventListener('click', editDetails);
-        })
-
-        const removeButtons = document.querySelectorAll('.remove-button');
-        removeButtons.forEach((removeButton) => {
-            removeButton.addEventListener('click', removeTodo);
-        })
-
-        const addProjectButton = document.querySelector('.add-project');
-        addProjectButton.addEventListener('click', addProject);
-
-        const submitProjectButton = document.querySelector('.submit-project');
-        submitProjectButton.addEventListener('click', submitNewProject);
-
-        const projectListItems = document.querySelectorAll('.project-list-item');
-        projectListItems.forEach((projectListItem) => {
-            projectListItem.addEventListener('click', switchProjects);
-        })
-    };
-
     function displayDetails(event) {
         const id = returnIDsFromEvent(event);
 
@@ -202,9 +162,17 @@ const domDisplay = (function() {
     }
     return {
         displayList,
-        attachListeners,
         clearMainContentDOM,
-        addToDOMList
+        addToDOMList,
+        displayDetails,
+        editDetails,
+        removeTodo, 
+        switchProjects,
+        addTodo,
+        closeDialog,
+        submitDetails,
+        addProject,
+        submitNewProject
     }
 })();
 
