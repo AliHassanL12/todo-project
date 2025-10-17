@@ -14,8 +14,8 @@ const controller = (function () {
     }
 
     function createNewProject(name) {
-        domDisplay.addToDOMList(name);
         const project = createProject(name);
+        domDisplay.addToDOMList(name);
         projectTracker.addProject(project);
         return project; 
     }
@@ -92,7 +92,7 @@ const controller = (function () {
         setTodoDetails,
         addNewTodo,
         removeTodo,
-        switchProjects
+        switchProjects,
     }
 })();
 

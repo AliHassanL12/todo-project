@@ -175,9 +175,15 @@ const domDisplay = (function() {
 
     function submitNewProject(event) {
         event.preventDefault();
+        const form = document.querySelector('.project-form');
         const name = document.querySelector('#name').value;
         controller.createNewProject(name);
+        const projectListItems = document.querySelectorAll('.project-list-item');
+        projectListItems.forEach((projectListItem) => {
+            projectListItem.addEventListener('click', switchProjects);
+        })
         closeDialog(event);
+        form.reset();
     }
 
     function addToDOMList(name) {
