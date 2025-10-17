@@ -3,26 +3,9 @@ import { domDialog } from './domDialog.js';
 import { controller } from './controller.js';
 
 const listener = (function() {
-    function attachDynamicListeners() {
-        const expandButtons = document.querySelectorAll('.expand-button');
-        expandButtons.forEach((expandButton) => {
-            expandButton.addEventListener('click', domDialog.expandTodo);
-        });
 
-        const editButtons = document.querySelectorAll('.edit-button');
-        editButtons.forEach((editButton) => {
-            editButton.addEventListener('click', domDialog.editDetails);
-        })
-
-        const removeButtons = document.querySelectorAll('.remove-button');
-        removeButtons.forEach((removeButton) => {
-            removeButton.addEventListener('click', controller.removeTodo);
-        })
-
-        const projectListItems = document.querySelectorAll('.project-list-item');
-        projectListItems.forEach((projectListItem) => {
-            projectListItem.addEventListener('click', domDisplay.switchProjects);
-        })
+    function attachListener(button, method) {
+        button.addEventListener('click', method);
     }
 
     function attachFixedListeners() {
@@ -46,7 +29,7 @@ const listener = (function() {
 
     return {
         attachFixedListeners,
-        attachDynamicListeners
+        attachListener
     }
 })();
 

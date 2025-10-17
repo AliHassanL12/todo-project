@@ -1,5 +1,7 @@
 import { controller } from "./controller";
 import { domData } from "./domDataRetriever";
+import { listener } from "./domListeners";
+import { domDialog } from "./domDialog";
 const domDisplay = (function() {
     function displayList(list) {
         for (const todo of list) {
@@ -20,7 +22,7 @@ const domDisplay = (function() {
 
         li.textContent = name;
         li.className = 'project-list-item';
-
+        listener.attachListener(li, domDisplay.switchProjects);
         ul.appendChild(li);
     }
 
@@ -45,6 +47,10 @@ const domDisplay = (function() {
         todoContainer.className = 'todo-container';
         rightContainer.className = 'right-sub-container';
 
+        listener.attachListener(expandButton, domDialog.expandTodo)
+        listener.attachListener(editDetailsButton, domDialog.editDetails);
+        listener.attachListener(removeButton, controller.removeTodo);
+        
         todoContainer.dataset.project = controller.getProjectAssignedToTodo(todo);
         todoContainer.dataset.id = controller.getTodoID(todo);
         todoContainer.style.borderLeft = '3px solid ' + controller.returnColor(todo.details.priority);

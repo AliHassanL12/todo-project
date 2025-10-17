@@ -26,7 +26,6 @@ const controller = (function () {
         projectTracker.setCurrentProject(project);
         const list = project.getList();
         domDisplay.displayList(list);
-        listener.attachDynamicListeners();
     }
 
     function returnColor(priority) {
@@ -57,8 +56,9 @@ const controller = (function () {
 
     function setTodoDetails(todo, title, description, dueDate, priority, notes) {
         todo.setDetails(title, description, dueDate, priority, notes);
-        domDisplay.clearMainContentDOM();
-        displayList(projectTracker.getCurrentProject());
+        const todoID = todo.getID();
+        domDisplay.removeTodoFromDom(todoID);
+        domDisplay.displayTodo(todo);
     }
 
     function addTodo(title, description, dueDate, priority, notes) {
@@ -67,7 +67,6 @@ const controller = (function () {
         currentProject.addToList(todo);
         todo.assignToProject(currentProject);
         domDisplay.displayTodo(todo);
-        listener.attachDynamicListeners();
     }
 
     function removeTodo(event) {
