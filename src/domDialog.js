@@ -60,7 +60,7 @@ const domDialog = (function() {
         const notesVal = document.querySelector('#notes').value;
         controller.setCurrentTodo(null);
         if (!todo) {
-            controller.addNewTodo(titleVal, descriptionVal, dueDateVal, priorityVal, notesVal);
+            controller.addTodo(titleVal, descriptionVal, dueDateVal, priorityVal, notesVal);
             closeDialog(event);
         } else {
             controller.setTodoDetails(todo, titleVal, descriptionVal, dueDateVal, priorityVal, notesVal);

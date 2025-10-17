@@ -3,38 +3,7 @@ import { domData } from "./domDataRetriever";
 const domDisplay = (function() {
     function displayList(list) {
         for (const todo of list) {
-            const mainContent = document.querySelector('.todo-main-content');
-            const todoContainer = document.createElement('div');
-            const rightContainer = document.createElement('div');
-            const title = document.createElement('span');
-            const dueDate = document.createElement('span');
-            const expandButton = document.createElement('button');
-            const editDetailsButton = document.createElement('button');
-            const removeButton = document.createElement('button');
-
-            editDetailsButton.className = 'edit-button';
-            expandButton.className = 'expand-button';
-            removeButton.className = 'remove-button';
-            todoContainer.className = 'todo-container';
-            rightContainer.className = 'right-sub-container';
-
-            todoContainer.dataset.project = controller.getProjectAssignedToTodo(todo);
-            todoContainer.dataset.id = controller.getTodoID(todo);
-            todoContainer.style.borderLeft = '3px solid ' + controller.returnColor(todo.details.priority);
-
-            title.textContent = todo.details.title;
-            dueDate.textContent = todo.details.dueDate;
-            expandButton.textContent = 'View Details';
-            editDetailsButton.textContent = 'Edit Details';
-            removeButton.textContent = 'Delete';
-
-            mainContent.appendChild(todoContainer);
-            todoContainer.appendChild(title);
-            todoContainer.appendChild(rightContainer);
-            rightContainer.appendChild(dueDate);
-            rightContainer.appendChild(editDetailsButton);
-            rightContainer.appendChild(expandButton);
-            rightContainer.appendChild(removeButton);
+            displayTodo(todo);
         }
     }
 
@@ -64,13 +33,49 @@ const domDisplay = (function() {
         const projectName = event.target.textContent;
         controller.switchProjects(projectName);
     }
-    
+
+    function displayTodo(todo) {
+        const mainContent = document.querySelector('.todo-main-content');
+        const todoContainer = document.createElement('div');
+        const rightContainer = document.createElement('div');
+        const title = document.createElement('span');
+        const dueDate = document.createElement('span');
+        const expandButton = document.createElement('button');
+        const editDetailsButton = document.createElement('button');
+        const removeButton = document.createElement('button');
+
+        editDetailsButton.className = 'edit-button';
+        expandButton.className = 'expand-button';
+        removeButton.className = 'remove-button';
+        todoContainer.className = 'todo-container';
+        rightContainer.className = 'right-sub-container';
+
+        todoContainer.dataset.project = controller.getProjectAssignedToTodo(todo);
+        todoContainer.dataset.id = controller.getTodoID(todo);
+        todoContainer.style.borderLeft = '3px solid ' + controller.returnColor(todo.details.priority);
+
+        title.textContent = todo.details.title;
+        dueDate.textContent = todo.details.dueDate;
+        expandButton.textContent = 'View Details';
+        editDetailsButton.textContent = 'Edit Details';
+        removeButton.textContent = 'Delete';
+
+        mainContent.appendChild(todoContainer);
+        todoContainer.appendChild(title);
+        todoContainer.appendChild(rightContainer);
+        rightContainer.appendChild(dueDate);
+        rightContainer.appendChild(editDetailsButton);
+        rightContainer.appendChild(expandButton);
+        rightContainer.appendChild(removeButton);
+    }
+
     return {
         displayList,
         clearMainContentDOM,
         addToDOMList,
         removeTodo, 
         switchProjects,
+        displayTodo
     }
 })();
 
