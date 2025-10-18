@@ -1,6 +1,7 @@
 import { controller } from "./controller";
 import { domDisplay } from "./domListDisplayer";
 import { domData } from "./domDataRetriever";
+import { todoTracker } from "./todoTracker";
 const domDialog = (function() {
 
     function expandTodo(event) {
@@ -28,7 +29,7 @@ const domDialog = (function() {
         const id = domData.getIDFromEvent(event);
 
         const todo = controller.findTodo(id);
-        controller.setCurrentTodo(todo);
+        todoTracker.setCurrentTodo(todo);
         const title = document.querySelector('#title');
         const description = document.querySelector('#description');
         const dueDate = document.querySelector('#due-date');
@@ -52,19 +53,20 @@ const domDialog = (function() {
 
     function submitDetails(event) {
         event.preventDefault();
-        const todo = controller.getCurrentTodo();
         const titleVal = document.querySelector('#title').value;
         const descriptionVal = document.querySelector('#description').value;
         const dueDateVal = document.querySelector('#due-date').value;
         const priorityVal = document.querySelector('#priority').value;
         const notesVal = document.querySelector('#notes').value;
-        controller.setCurrentTodo(null);
+
+        const todo = todoTracker.getCurrentTodo();
+        todoTracker.setCurrentTodo(null);
+        closeDialog(event);
+        
         if (!todo) {
             controller.addTodo(titleVal, descriptionVal, dueDateVal, priorityVal, notesVal);
-            closeDialog(event);
         } else {
             controller.setTodoDetails(todo, titleVal, descriptionVal, dueDateVal, priorityVal, notesVal);
-            closeDialog(event);
         }
     }
 
@@ -88,7 +90,6 @@ const domDialog = (function() {
         const dialog = document.querySelector('.project');
         dialog.showModal();
     }
-
 
     return {
         expandTodo,

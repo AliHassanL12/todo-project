@@ -6,7 +6,6 @@ import { createTodo } from "./todo";
 import { domData } from "./domDataRetriever";
 
 const controller = (function () {
-    let currentTodo = null;
 
     function init() {
         const defaultProject = createNewProject('default');
@@ -22,7 +21,6 @@ const controller = (function () {
     }
 
     function displayList(project) {
-        projectTracker.setCurrentProject(project);
         const list = project.getList();
         domDisplay.displayList(list);
     }
@@ -33,19 +31,10 @@ const controller = (function () {
         return requestedTodo;
     }
 
-    function setCurrentTodo(todo) {
-        currentTodo = todo;
-    }
-
-    function getCurrentTodo() {
-        return currentTodo;
-    }
-
     function setTodoDetails(todo, title, description, dueDate, priority, notes) {
         todo.setDetails(title, description, dueDate, priority, notes);
-        const todoID = todo.getID();
-        domDisplay.removeTodoFromDom(todoID);
-        domDisplay.displayTodo(todo);
+        domDisplay.clearMainContentDOM();
+        displayList(projectTracker.getCurrentProject());
     }
 
     function addTodo(title, description, dueDate, priority, notes) {
@@ -66,6 +55,7 @@ const controller = (function () {
     function switchProjects(name) {
         const list = projectTracker.getProjects();
         const newCurrentProject = list.find((project) => project.getProjectName() === name);
+        projectTracker.setCurrentProject(newCurrentProject);
         domDisplay.clearMainContentDOM();
         displayList(newCurrentProject);
     }
@@ -75,8 +65,6 @@ const controller = (function () {
         displayList,
         createNewProject,
         findTodo,
-        setCurrentTodo,
-        getCurrentTodo,
         setTodoDetails,
         removeTodo,
         switchProjects,
