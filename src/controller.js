@@ -3,7 +3,6 @@ import { domDisplay } from "./domListDisplayer";
 import { createProject } from "./project";
 import { projectTracker } from "./projectTracker";
 import { createTodo } from "./todo";
-import { listener } from "./domListeners";
 import { domData } from "./domDataRetriever";
 
 const controller = (function () {
@@ -26,18 +25,6 @@ const controller = (function () {
         projectTracker.setCurrentProject(project);
         const list = project.getList();
         domDisplay.displayList(list);
-    }
-
-    function returnColor(priority) {
-        return colorPicker.returnColor(priority);
-    }
-
-    function getTodoID(todo) {
-        return todo.getID();
-    }
-
-    function getProjectAssignedToTodo(todo) {
-        return todo.getAssignedProject();
     }
 
     function findTodo(id) {
@@ -86,10 +73,7 @@ const controller = (function () {
     return {
         init,
         displayList,
-        returnColor,
         createNewProject,
-        getTodoID,
-        getProjectAssignedToTodo,
         findTodo,
         setCurrentTodo,
         getCurrentTodo,

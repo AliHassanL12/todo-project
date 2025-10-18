@@ -2,6 +2,7 @@ import { controller } from "./controller";
 import { domData } from "./domDataRetriever";
 import { listener } from "./domListeners";
 import { domDialog } from "./domDialog";
+import { colorPicker } from "./colorPicker";
 const domDisplay = (function() {
     function displayList(list) {
         for (const todo of list) {
@@ -51,9 +52,9 @@ const domDisplay = (function() {
         listener.attachListener(editDetailsButton, domDialog.editDetails);
         listener.attachListener(removeButton, controller.removeTodo);
         
-        todoContainer.dataset.project = controller.getProjectAssignedToTodo(todo);
-        todoContainer.dataset.id = controller.getTodoID(todo);
-        todoContainer.style.borderLeft = '3px solid ' + controller.returnColor(todo.details.priority);
+        todoContainer.dataset.project = todo.getAssignedProject();
+        todoContainer.dataset.id = todo.getID();
+        todoContainer.style.borderLeft = '3px solid ' + colorPicker.returnColor(todo.details.priority);
 
         title.textContent = todo.details.title;
         dueDate.textContent = todo.details.dueDate;
