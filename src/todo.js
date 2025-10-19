@@ -1,5 +1,12 @@
-function createTodo(title, description, dueDate, priority, notes) {
-    let currentProject = null;
+function createTodo(title, description, dueDate, priority, notes, project = null, id = null) {
+    let currentProject;
+    let todoID; 
+    if (project) currentProject = project;
+    else currentProject = null;
+
+    if (todoID) todoID = id;
+    else todoID = crypto.randomUUID();
+
     let details = {
         title,
         description,
@@ -7,7 +14,6 @@ function createTodo(title, description, dueDate, priority, notes) {
         priority, 
         notes
     }
-    const todoID = crypto.randomUUID();
 
     function assignToProject(project) {
         const name = project.getProjectName();
@@ -30,13 +36,22 @@ function createTodo(title, description, dueDate, priority, notes) {
         details.notes = notes;
     }
 
+    function storageObject() {
+        return {
+            currentProject,
+            todoID,
+            details
+        }
+    }
+
 
     return {
         details, 
         assignToProject,
         getAssignedProject, 
         getID,
-        setDetails
+        setDetails,
+        storageObject
     }
 }
 

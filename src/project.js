@@ -1,6 +1,7 @@
-function createProject(name) {
-
-    let list = [];
+function createProject(name, customList = null) {
+    let list; 
+    if (customList) list = customList
+    else list = [];
 
     function addToList(todo) {
         list.push(todo);
@@ -20,11 +21,24 @@ function createProject(name) {
         list.splice(index, 1);
     }
 
+    function setList(newList) {
+        list = newList;
+    } 
+
+    function storageObject() {
+        return {
+            name,
+            list
+        }
+    }
+
     return {
         addToList,
         getList,
         getProjectName,
-        removeTodo
+        removeTodo,
+        storageObject,
+        setList
     }
 }
 

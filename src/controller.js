@@ -1,22 +1,28 @@
-import { colorPicker } from "./colorPicker";
 import { domDisplay } from "./domListDisplayer";
 import { createProject } from "./project";
 import { projectTracker } from "./projectTracker";
 import { createTodo } from "./todo";
 import { domData } from "./domDataRetriever";
+import { storage } from "./localStorage";
 
 const controller = (function () {
 
     function init() {
-        const defaultProject = createNewProject('default');
-        projectTracker.setCurrentProject(defaultProject);
+        storage.populateFromStorage('projects')
         displayList(projectTracker.getCurrentProject());
+        // const defaultProject = createNewProject('default');
+        // projectTracker.setCurrentProject(defaultProject);
+        // displayList(projectTracker.getCurrentProject());
+        // addTodo('dsa', 'dsa', 'dsa', 'dsa', 'dsa' );
+        // storage.populateFromStorage('projects');
     }
 
     function createNewProject(name) {
         const project = createProject(name);
         projectTracker.addProject(project);
         domDisplay.addToDOMList(name);
+        storage.setItem('projects', projectTracker.getProjects())
+        // storage.addToStorage('projects', projectTracker.storageObject())
         return project; 
     }
 
@@ -43,6 +49,8 @@ const controller = (function () {
         currentProject.addToList(todo);
         todo.assignToProject(currentProject);
         domDisplay.displayTodo(todo);
+        storage.setItem('projects', projectTracker.getProjects())
+        // storage.addToStorage('projects', projectTracker.storageObject())
     }
 
     function removeTodo(event) {

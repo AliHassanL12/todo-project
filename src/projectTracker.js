@@ -18,11 +18,23 @@ const projectTracker = (function() {
         return currentProject
     }
 
+    function populateProjects(list) {
+        projects = list;
+    }
+
+    function storageObject() {
+        return {
+            projects
+        }
+    }
+
     return {
         addProject,
         getProjects,
         setCurrentProject,
-        getCurrentProject
+        getCurrentProject,
+        storageObject,
+        populateProjects
     }
 })();
 
