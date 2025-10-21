@@ -20,15 +20,22 @@ const domDisplay = (function() {
     function addToDOMList(name) {
         const ul = document.querySelector('.project-list');
         const li = document.createElement('li');
-
+        const delButton = document.createElement('button');
+        
+        delButton.textContent = 'Delete'
         li.textContent = name;
         li.className = 'project-list-item';
+        li.dataset.project = name;
+
         listener.attachListener(li, domDisplay.switchProjects);
+        listener.attachListener(delButton, domDisplay.deleteProject);
+        li.appendChild(delButton);
         ul.appendChild(li);
     }
 
     function switchProjects(event) {
-        const projectName = event.target.textContent;
+        event.stopPropagation();
+        const projectName = event.target.dataset.project;
         controller.switchProjects(projectName);
     }
 
@@ -76,13 +83,22 @@ const domDisplay = (function() {
         todo.remove();
     }
 
+    function deleteProject(event) {
+        event.stopPropagation();
+        const parentElement = event.target.parentElement;
+        const projectName = parentElement.textContent;
+        parentElement.remove();
+        controller.removeProject(projectName);
+    }
+
     return {
         displayList,
         clearMainContentDOM,
         addToDOMList,
         switchProjects,
         displayTodo,
-        removeTodoFromDom
+        removeTodoFromDom,
+        deleteProject
     }
 })();
 

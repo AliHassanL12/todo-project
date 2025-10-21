@@ -77,6 +77,14 @@ const controller = (function () {
         displayList(newCurrentProject);
     }
 
+    function removeProject(name) {
+        const isProjectName = (project) => project.getProjectName() === name;
+        const projects = projectTracker.getProjects();
+        const projectIndex = projects.findIndex(isProjectName);
+        projects.splice(projectIndex, 1);
+        storage.setItem('projects', projectTracker.getProjects())
+    }
+
     return {
         init,
         displayList,
@@ -85,7 +93,8 @@ const controller = (function () {
         setTodoDetails,
         removeTodo,
         switchProjects,
-        addTodo
+        addTodo,
+        removeProject
     }
 })();
 
