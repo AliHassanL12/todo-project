@@ -66,6 +66,7 @@ const controller = (function () {
         const currentProject = projectTracker.getCurrentProject();
         currentProject.removeTodo(id);
         domDisplay.removeTodoFromDom(id);
+        storage.setItem('projects', projectTracker.getProjects())
     }
 
     function switchProjects(name) {

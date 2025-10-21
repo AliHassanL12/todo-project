@@ -4,7 +4,7 @@ function createTodo(title, description, dueDate, priority, notes, project = null
     if (project) currentProject = project;
     else currentProject = null;
 
-    if (todoID) todoID = id;
+    if (id) todoID = id;
     else todoID = crypto.randomUUID();
 
     let details = {
