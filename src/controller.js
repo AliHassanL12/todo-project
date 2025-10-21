@@ -8,14 +8,22 @@ import { storage } from "./localStorage";
 const controller = (function () {
 
     function init() {
-        storage.populateFromStorage('projects')
-        displayList(projectTracker.getCurrentProject());
-        // const defaultProject = createNewProject('default');
-        // projectTracker.setCurrentProject(defaultProject);
-        // displayList(projectTracker.getCurrentProject());
-        // addTodo('dsa', 'dsa', 'dsa', 'dsa', 'dsa' );
-        // storage.populateFromStorage('projects');
+        if (localStorage.getItem('projects')) {
+            populate();
+        } else {
+            const defaultProject = createNewProject('default');
+            projectTracker.setCurrentProject(defaultProject);
+            displayList(projectTracker.getCurrentProject());
+        }
     }
+
+    function populate() {
+        storage.populateFromStorage('projects');
+        displayList(projectTracker.getCurrentProject());
+        for (const project of projectTracker.getProjects()) {
+            domDisplay.addToDOMList(project.getProjectName());
+        };
+    };
 
     function createNewProject(name) {
         const project = createProject(name);
