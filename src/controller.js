@@ -9,6 +9,7 @@ const controller = (function () {
 
     function init() {
         if (localStorage.getItem('projects')) {
+            domDisplay.setTitle('Home');
             populate();
         } else {
             const project = createProject('Home');
@@ -24,7 +25,7 @@ const controller = (function () {
         displayList(projectTracker.getCurrentProject());
         for (const project of projectTracker.getProjects()) {
             const name = project.getProjectName();
-            if (name === 'default') continue;
+            if (name === 'Home') continue;
             domDisplay.addToDOMList(project.getProjectName());
         };
     };

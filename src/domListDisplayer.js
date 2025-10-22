@@ -97,7 +97,7 @@ const domDisplay = (function() {
     }
 
     function setTitle(name) {
-        const h1 = document.querySelector('.title');
+        const h1 = document.querySelector('.project-title');
         h1.textContent = name;
     }
 
