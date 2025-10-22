@@ -96,6 +96,11 @@ const domDisplay = (function() {
         listener.attachListener(home, switchProjects);
     }
 
+    function setTitle(name) {
+        const h1 = document.querySelector('.title');
+        h1.textContent = name;
+    }
+
     return {
         displayList,
         clearMainContentDOM,
@@ -105,6 +110,7 @@ const domDisplay = (function() {
         removeTodoFromDom,
         deleteProject,
         initialiseDefault,
+        setTitle
     }
 })();
 

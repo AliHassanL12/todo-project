@@ -11,9 +11,10 @@ const controller = (function () {
         if (localStorage.getItem('projects')) {
             populate();
         } else {
-            const project = createProject('default');
+            const project = createProject('Home');
             projectTracker.addProject(project);
             projectTracker.setCurrentProject(project);
+            domDisplay.setTitle('Home');
             displayList(projectTracker.getCurrentProject());
         }
     }
@@ -77,6 +78,7 @@ const controller = (function () {
         const newCurrentProject = list.find((project) => project.getProjectName() === name);
         projectTracker.setCurrentProject(newCurrentProject);
         domDisplay.clearMainContentDOM();
+        domDisplay.setTitle(name);
         displayList(newCurrentProject);
     }
 
