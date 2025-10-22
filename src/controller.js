@@ -11,8 +11,9 @@ const controller = (function () {
         if (localStorage.getItem('projects')) {
             populate();
         } else {
-            const defaultProject = createNewProject('default');
-            projectTracker.setCurrentProject(defaultProject);
+            const project = createProject('default');
+            projectTracker.addProject(project);
+            projectTracker.setCurrentProject(project);
             displayList(projectTracker.getCurrentProject());
         }
     }
@@ -21,6 +22,8 @@ const controller = (function () {
         storage.populateFromStorage('projects');
         displayList(projectTracker.getCurrentProject());
         for (const project of projectTracker.getProjects()) {
+            const name = project.getProjectName();
+            if (name === 'default') continue;
             domDisplay.addToDOMList(project.getProjectName());
         };
     };

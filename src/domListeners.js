@@ -25,6 +25,9 @@ const listener = (function() {
 
         const submitProjectButton = document.querySelector('.submit-project');
         submitProjectButton.addEventListener('click', domDialog.submitNewProject);
+
+        const homeDefaultProject = document.querySelector('.default-project');
+        homeDefaultProject.addEventListener('click', domDisplay.initialiseDefault)
     };
 
     return {

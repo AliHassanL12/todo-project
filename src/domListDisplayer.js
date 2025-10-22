@@ -27,8 +27,8 @@ const domDisplay = (function() {
         li.className = 'project-list-item';
         li.dataset.project = name;
 
-        listener.attachListener(li, domDisplay.switchProjects);
-        listener.attachListener(delButton, domDisplay.deleteProject);
+        listener.attachListener(li, switchProjects);
+        listener.attachListener(delButton, deleteProject);
         li.appendChild(delButton);
         ul.appendChild(li);
     }
@@ -91,6 +91,11 @@ const domDisplay = (function() {
         controller.removeProject(projectName);
     }
 
+    function initialiseDefault(event) {
+        const home = event.target;
+        listener.attachListener(home, switchProjects);
+    }
+
     return {
         displayList,
         clearMainContentDOM,
@@ -98,7 +103,8 @@ const domDisplay = (function() {
         switchProjects,
         displayTodo,
         removeTodoFromDom,
-        deleteProject
+        deleteProject,
+        initialiseDefault,
     }
 })();
 

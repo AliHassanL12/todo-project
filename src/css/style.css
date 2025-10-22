@@ -103,6 +103,7 @@ form > div > input {
     gap: 20px;
 }
 
-.project-list > li {
+.project-list > li,
+.default-project {
     cursor: pointer;
 }
