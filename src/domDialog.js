@@ -2,6 +2,7 @@ import { controller } from "./controller";
 import { domDisplay } from "./domListDisplayer";
 import { domData } from "./domDataRetriever";
 import { todoTracker } from "./todoTracker";
+import { format } from 'date-fns';
 const domDialog = (function() {
 
     function expandTodo(event) {
@@ -55,7 +56,8 @@ const domDialog = (function() {
         event.preventDefault();
         const titleVal = document.querySelector('#title').value;
         const descriptionVal = document.querySelector('#description').value;
-        const dueDateVal = document.querySelector('#due-date').value;
+        let dueDateVal = document.querySelector('#due-date').value;
+        dueDateVal = format(new Date(dueDateVal), "dd-MM-yyyy");
         const priorityVal = document.querySelector('#priority').value;
         const notesVal = document.querySelector('#notes').value;
 
