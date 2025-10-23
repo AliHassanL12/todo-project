@@ -17,6 +17,7 @@ const controller = (function () {
             projectTracker.setCurrentProject(project);
             domDisplay.setTitle('Home');
             displayList(projectTracker.getCurrentProject());
+            listener.attachListener(project, switchProjects);
         }
     }
 
