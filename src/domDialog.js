@@ -53,6 +53,8 @@ const domDialog = (function() {
     }
 
     function submitDetails(event) {
+        const form = document.querySelector('.submit-todo-form');
+        if (!form.checkValidity()) return; 
         event.preventDefault();
         const titleVal = document.querySelector('#title').value;
         const descriptionVal = document.querySelector('#description').value;

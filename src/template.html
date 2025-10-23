@@ -25,22 +25,22 @@
             <button class="close" type="button">Close</button>
         </dialog>
         <dialog class="edit-details">
-            <form>
+            <form class="submit-todo-form">
                 <div>
-                    <label for="title">Title:</label>
-                    <input type="text" id="title" name="title">
+                    <label for="title">Title:*</label>
+                    <input type="text" id="title" name="title" required>
                 </div>
                 <div>
-                    <label for="description">Description:</label>
-                    <input type="text" id="description" name="description">
+                    <label for="description">Description:*</label>
+                    <input type="text" id="description" name="description" required>
                 </div>
                 <div>
-                    <label for="due-date">Due Date:</label>
-                    <input type="date" id="due-date" name="due-date">
+                    <label for="due-date">Due Date:*</label>
+                    <input type="date" id="due-date" name="due-date" required>
                 </div>
                 <div>
-                    <label for="priority">Priority:</label>
-                    <input type="text" id="priority" name="priority">
+                    <label for="priority">Priority:*</label>
+                    <input type="text" id="priority" name="priority" pattern="^(high|medium|low)$" placeholder="high / medium / low" required>
                 </div>
                 <div>
                     <label for="notes">Notes:</label>
