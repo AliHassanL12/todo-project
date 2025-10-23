@@ -77,6 +77,7 @@ const domDialog = (function() {
     function submitNewProject(event) {
         event.preventDefault();
         const form = document.querySelector('.project-form');
+        if (!form.checkValidity()) return; 
         const name = document.querySelector('#name').value;
         controller.createNewProject(name);
         closeDialog(event);

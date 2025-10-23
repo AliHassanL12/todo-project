@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    line-height: 1.5;
+    line-height: 1.7;
 }
 
 body {
@@ -106,10 +106,29 @@ form > div > input {
 
 .sidebar > button,
 .project-list > li > button,
-.add-todo-button  {
+.add-todo-button,
+.right-sub-container > button   {
     height: 30px;
     width: 100px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
 }
+
+.sidebar > button:hover,
+.project-list > li > button:hover,
+.add-todo-button:hover,
+.right-sub-container > button:hover {
+    background-color: rgb(197, 196, 196);
+} 
+
+
+.sidebar > button:active,
+.project-list > li > button:active,
+.add-todo-button:active,
+.right-sub-container > button:active {
+    background-color: rgb(190, 190, 190);
+} 
 
 .add-project,
 .project-list > li > button  {
@@ -139,4 +158,12 @@ form > div > input {
 
 .main-content > .add-todo-button {
     justify-self: end;
+}
+
+.right-sub-container > span {
+    text-align: center;
+}
+
+.default-project {
+    line-height: 1.2;
 }
